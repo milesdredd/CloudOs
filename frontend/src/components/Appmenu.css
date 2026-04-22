@@ -1,0 +1,48 @@
+.appmenu {
+    /* border: 2px solid rgb(116, 83, 23); */
+    margin: 10px;
+    padding: 10px;
+    gap: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    z-index: 999;
+	box-sizing: border-box;
+}
+
+.appmenu>* {
+    margin: 5px;
+    padding: 5px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.appmenu>*:hover {
+    background-color: rgb(176, 173, 179);
+    box-shadow: rgba(0, 0, 0, 0.55) 0px 2px 8px;
+}
+
+.appmenu>*:active {
+    background-color: rgb(117, 117, 117);
+    box-shadow: inset rgba(0, 0, 0, 0.55) 0px 2px 8px;
+
+}
+
+.appmenu>*>.icon {
+    height: 25px;
+    width: 25px;
+    /* border: 1px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+
+}
+
+.appmenu>*>.label {
+    height: 19px;
+    width: 180px;
+    /* border: 1px solid black; */
+
+}
