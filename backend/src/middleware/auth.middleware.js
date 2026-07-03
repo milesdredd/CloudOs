@@ -14,7 +14,7 @@ function handleTokenMiddleware(req, res, next) {
         next();
 
     } catch (e) {
-        console.log("token error cannot approve access")
+        console.log("token error cannot approve access");
         return res.status(401).json({ success: false, msg: "token not verified to continue" })
     }
 

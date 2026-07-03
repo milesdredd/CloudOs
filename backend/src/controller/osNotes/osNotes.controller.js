@@ -9,7 +9,6 @@ async function getNotesList(req, res) {
         return res
             .status(200)
             .json(data);
-
     } catch (e) {
         return res.status(500).json({ error: "Failed to fetch notes" });
     }
@@ -68,7 +67,7 @@ async function addContent(req, res) {
 }
 async function addNotes(req, res) {
 
-    const { title, content, markdown = true } = req.body;
+    const { title, content, markdown = false } = req.body;
     const userId = req.user.userId;
 
     try {
@@ -91,16 +90,20 @@ async function addNotes(req, res) {
 }
 async function removeNote(req, res) {
     const userId = req.user.userId;
-    const { title } = req.body;
+    const noteId = req.params.id;
     try {
-        await Notesdb.removeOne({
-            title: title,
+        const result = await Notesdb.deleteOne({
+            _id: noteId,
             userId: userId
         });
-        res.json({ success: true, msg: "note remove" });
+        if (result.deletedCount) {
+            res.json({ success: true, msg: "note remove" });
+        }
+
     } catch (e) {
         res.json({ success: false, msg: "no change !" });
     }
+
 }
 
 export { NewTitle, addContent, addNotes, removeNote, getNotesList, getContent };

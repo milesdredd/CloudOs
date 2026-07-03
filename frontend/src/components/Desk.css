@@ -15,7 +15,7 @@ body {
 
     margin: 0;
     position: relative;
-    overflow: hidden;
+    overflow: scroll;
     display: grid;
     grid-template-rows: 1fr auto;
     position: relative;

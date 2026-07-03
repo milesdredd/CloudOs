@@ -1,0 +1,71 @@
+.appWindowHandle {
+    border: 2px solid rgb(43, 73, 37);
+    background-color: rgb(67, 87, 80);
+    height: 70%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: scroll;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.724) 0px 5px 15px;
+}
+
+.appWindowHandle * {
+    border-radius: 10px;
+
+}
+
+.header {
+    border: 2px solid rgb(53, 76, 88);
+    width: 100%;
+    height: 5%;
+    cursor: grab;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+}
+
+.contentbox {
+    border: 2px solid rgb(101, 126, 125);
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+
+    display: block;
+
+}
+
+.header:active {
+    cursor: move;
+    pointer-events: none;
+}
+
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 4px;
+    align-items: end;
+    min-width: 10px;
+    min-height: auto;
+    background-color: rgb(83, 71, 94);
+    border: 2px solid rgba(121, 104, 91, 0.782);
+    cursor: default;
+}
+
+.btn {
+    width: 10px;
+    height: 10px;
+    border: 2px solid rgb(109, 63, 63);
+
+}
+
+.btn:hover {
+    border: 2px solid rgb(213, 21, 21);
+    cursor: default;
+}

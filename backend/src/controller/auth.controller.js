@@ -25,7 +25,7 @@ async function handleSignIn(req, res) {
     if (password !== userExist.password) {
         return res.status(400).json({ success: false, reply: "wrong password", tokenSent: null });
     }
-    console.log("logign verified")
+    console.log("verifying ...")
     const token = await Token(userExist);
     console.log(`token generated`)
     res.cookie("token", token, {

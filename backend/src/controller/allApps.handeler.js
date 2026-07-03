@@ -13,8 +13,6 @@ async function handleAppList(req, res) {
         console.log(e);
         res.status(400).json({ msg: "error getting app list" });
     }
-
-
 }
 async function addApp(req, res) {
     try {

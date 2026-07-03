@@ -1,27 +1,41 @@
 .appWindow {
-    margin: 20px;
-    height: 70%;
-    width: 70%;
+
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: scroll;
     border-radius: 0.3em;
-    border: 1px solid rgba(185, 185, 185, 0.649);
+
     background-color: rgb(24, 24, 24);
     box-sizing: border-box;
-    gap: 1px;
+    position: relative;
 
 }
 
-.listTab {
-    border-radius: 0.3em;
 
-    height: 100%;
+
+.listTab {
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.3em;
+    justify-content: space-between;
+    height: auto;
     width: 150px;
     background-color: rgb(79, 79, 79);
 
 
+
+}
+
+.contentWindow {
+    overflow: scroll;
+    background-color: rgb(0, 0, 0);
+    gap: 1px;
+    border-radius: 0.3em;
+    padding: 5px;
+    flex-grow: 1;
 }
 
 .titleBox {
@@ -47,17 +61,16 @@
     border: none;
 }
 
-.contentWindow {
-    background-color: rgb(79, 79, 79);
-    width: 100%;
-    border-radius: 0.3em;
-    padding: 5px;
-}
+
 
 .contentctrl {
+
+    border-radius: 0.3em;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: baseline;
+    background-color: rgb(79, 79, 79);
 }
 
 .contentctrl>button {
@@ -76,6 +89,8 @@
 textarea {
     padding: 10px;
     width: 100%;
+    max-width: 100%;
+    min-width: fit-content;
     height: 86%;
     line-height: 1.5;
     border-radius: 5px;
@@ -86,5 +101,18 @@ textarea {
 
 textarea:focus {
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+}
+
+.new {
+    border: 2px solid black;
+    padding: 4px;
+}
+
+.Prompt {
+    position: fixed;
+    background-color: azure;
+
+    margin: 5px;
 
 }

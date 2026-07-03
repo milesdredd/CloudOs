@@ -18,7 +18,7 @@ function desk() {
 
                 {AppRunData.notes && <NoteApp />}
                 {AppRunData.browser && <Browser />}
-                {AppRunData.appmenu && <Appmenu />}
+                <Appmenu />
             </div>
             <Bar />
         </div >

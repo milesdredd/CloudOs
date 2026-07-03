@@ -9,6 +9,8 @@ function Bar() {
     const login = async () => {
         try {
 
+            console.log("trying to login");
+
             const res = await fetch("http://localhost:4060/auth/signIn", {
                 method: "POST",
                 headers: {
@@ -29,10 +31,9 @@ function Bar() {
             if (data.token) {
                 localStorage.setItem("token", data.token);
                 console.log("Token saved to localStorage");
-
             }
         } catch (err) {
-            console.log("error:", err);
+            console.log("login error:", err);
         }
     };
     const toggleApp = (name) => {
@@ -46,19 +47,18 @@ function Bar() {
         <div className="bar">
             <div className="right">
                 <button type="button" onClick={() => {
-                    toggleApp("notes")
+                    toggleApp("notes");
                 }}>Notes</button>
                 <button type="button" onClick={() => {
-                    toggleApp("browser")
+                    toggleApp("browser");
                 }}>Browser</button>
             </div>
 
             <div className="middle">middle
 
 
-                <button type="button" onClick={() => {
-                    toggleApp("appmenu")
-                }}>btn</button>
+                <button type="button" popoverTarget="appmenu-pop"
+                >start</button>
                 <button type="button" onClick={login}>login</button>
 
             </div>
