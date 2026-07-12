@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-
+import { TaskApp, TaskPop } from './barThings/TaskApp.jsx';
 import './Bar.css'
 import { windowDx } from './contexts/AppDrawer';
 function Bar() {
@@ -46,25 +46,25 @@ function Bar() {
     return (
         <div className="bar">
             <div className="right">
-                <button type="button" onClick={() => {
-                    toggleApp("notes");
-                }}>Notes</button>
-                <button type="button" onClick={() => {
-                    toggleApp("browser");
-                }}>Browser</button>
+                <TaskApp appName="notes" icon="󱩽" />
+                <TaskApp appName="browser" icon="󰀳" />
+                <TaskApp appName="calculator" icon="" />
             </div>
 
-            <div className="middle">middle
-
-
-                <button type="button" popoverTarget="appmenu-pop"
-                >start</button>
-                <button type="button" onClick={login}>login</button>
+            <div className="middle">
+                <TaskPop PopName="appmenu-pop" icon="" />
+                <button className='taskbarIcon jb' type="button" onClick={login}></button>
 
             </div>
 
 
-            <div className="left">left</div>
+            <div className="left">
+                <TaskApp appName="github" icon="" />
+                <TaskApp appName="friends" icon="󰀏" />
+                <TaskApp appName="finder" icon="󰀖" />
+                <TaskApp appName="internet" icon="󰤥" />
+                <TaskApp appName="battery-app" icon="" />
+            </div>
 
         </div>
     )

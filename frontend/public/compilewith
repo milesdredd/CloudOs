@@ -1,0 +1,4 @@
+/usr/lib/emscripten/emcc [filename.cpp] \
+  -o calc.js \
+  -sMODULARIZE \
+  -sEXPORT_ES6

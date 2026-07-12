@@ -1,0 +1,22 @@
+.taskbarIcon {
+    all: unset;
+    display: grid;
+    place-items: center;
+
+    height: 95%;
+    aspect-ratio: 1;
+    min-width: 25px;
+
+    border-radius: 4px;
+
+    font-family: "JetBrainsMono Nerd";
+    font-size: 20px;
+    line-height: 1;
+
+}
+
+.taskbarIcon:hover {
+    background-color: rgba(255, 255, 255, 0.398);
+    border-radius: 5px;
+    /* border-bottom: 3px solid rgb(1, 225, 255); */
+}

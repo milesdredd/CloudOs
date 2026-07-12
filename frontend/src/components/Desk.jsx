@@ -5,6 +5,7 @@ import Appmenu from './Appmenu'
 import { windowDx } from './contexts/AppDrawer.jsx'
 import NoteApp from './NoteApp'
 import Browser from './BrowserApp.jsx'
+import Calculator from './Calculator.jsx'
 
 
 
@@ -18,6 +19,7 @@ function desk() {
 
                 {AppRunData.notes && <NoteApp />}
                 {AppRunData.browser && <Browser />}
+                {AppRunData.calculator && <Calculator />}
                 <Appmenu />
             </div>
             <Bar />

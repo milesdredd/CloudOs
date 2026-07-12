@@ -6,7 +6,7 @@ function AppTray(appContent) {
     const [isDrag, Drag] = useState(false);
     const [offsetX, setOffsetX] = useState(null);
     const [offsetY, setOffsetY] = useState(null);
-    
+
     const [Z, setZ] = useState(1);
 
     return (
@@ -39,9 +39,9 @@ function AppTray(appContent) {
 
                 <div className="title"></div>
                 <div className="btns">
-                    <div className="btn close">x</div>
-                    <div className="btn minimize">_</div>
-                    <div className="btn maximize">^</div>
+                    <div className="btn close"></div>
+                    <div className="btn minimize"></div>
+                    <div className="btn maximize"></div>
                 </div>
             </div>
             <div className="contentbox">{appContent.children}</div>

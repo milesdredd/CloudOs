@@ -113,7 +113,7 @@ const NoteApp = () => {
                         {
                             noteList.map((data) => (
 
-                                <div className="titleBox new" key={data._id}
+                                <div className="titleBox" key={data._id}
                                     onContextMenu={(e) => {
                                         e.preventDefault();
                                         console.log(`right clicked on ${data._id}`);
@@ -143,14 +143,14 @@ const NoteApp = () => {
                         }
                     </div>
                     <div className="newNotes">
-                        <button type="button" popoverTarget="newNotePrompt-pop"
+                        <button className='newbtn' type="button" popoverTarget="newNotePrompt-pop"
                             onMouseDown={(e) => {
                                 setLoc({
-                                    x: e.clientX,
-                                    y: e.clientY
+                                    x: e.clientX + 20,
+                                    y: e.clientY - 80
                                 })
                             }}>
-                            Add New
+                            + Add New
                         </button>
 
                     </div>
@@ -176,16 +176,16 @@ const NoteApp = () => {
 
                     </textarea>
                 </div>
-                <div className="Prompt" id="newNotePrompt-pop" popover="manual"
+                <div className="newNotePrompt" id="newNotePrompt-pop" popover="manual"
                     style={{
                         top: promptLoc.y,
                         left: promptLoc.x
                     }}
                 >
-                    <input type="text" value={newTitle} onChange={(e) => { setTitle(e.target.value) }} />
+                    <input className='input' type="text" value={newTitle} onChange={(e) => { setTitle(e.target.value) }} />
                     <div className="buttons">
-                        <button popoverTarget="newNotePrompt-pop">close</button>
-                        <button onClick={newNote} popoverTarget="newNotePrompt-pop">Create</button>
+                        <button className="btn" popoverTarget="newNotePrompt-pop">close</button>
+                        <button className="btn" onClick={newNote} popoverTarget="newNotePrompt-pop">Create</button>
                     </div>
                 </div>
                 <div className="Prompt" id="option-menu" popover="auto" style={{

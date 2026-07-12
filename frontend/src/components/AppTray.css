@@ -1,39 +1,45 @@
+:root {
+    --appbgColor: rgb(32, 32, 32);
+    --txtcolor: rgb(225, 231, 219);
+    --border: rgba(255, 255, 255, 0.146);
+}
+
+
 .appWindowHandle {
-    border: 2px solid rgb(43, 73, 37);
-    background-color: rgb(67, 87, 80);
+    /* border: 2px solid rgb(43, 73, 37); */
+    background-color: var(--appbgColor);
     height: 70%;
     width: 60%;
     display: flex;
     flex-direction: column;
-    border-radius: 20px;
+    border-radius: 12px;
     box-sizing: border-box;
-    overflow: scroll;
-    padding: 5px;
-    box-shadow: rgba(0, 0, 0, 0.724) 0px 5px 15px;
+    overflow: hidden;
+    padding: 1px;
+    box-shadow: rgba(0, 0, 0, 0.796) 0px 5px 15px;
+    animation: fadeIn 200ms ease-out;
+    border: 13px solid var(--appbgColor);
+    border-radius: 20px;
 }
 
-.appWindowHandle * {
-    border-radius: 10px;
-
-}
 
 .header {
-    border: 2px solid rgb(53, 76, 88);
+    /* border: 2px solid rgb(53, 76, 88); */
     width: 100%;
-    height: 5%;
+    height: 3%;
     cursor: grab;
-    padding: 3px;
+    padding: 2px 5px;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: start;
 
 }
 
 .contentbox {
-    border: 2px solid rgb(101, 126, 125);
+    /* border: 2px solid rgb(101, 126, 125); */
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: hidden;
 
     display: block;
 
@@ -49,23 +55,39 @@
     display: flex;
     flex-direction: row;
     width: fit-content;
-    gap: 4px;
-    align-items: end;
+    gap: 10px;
+    overflow: hidden;
     min-width: 10px;
     min-height: auto;
-    background-color: rgb(83, 71, 94);
-    border: 2px solid rgba(121, 104, 91, 0.782);
+    /* background-color: rgb(83, 71, 94); */
+    /* border: 2px solid rgba(255, 124, 23, 0.782); */
     cursor: default;
 }
 
 .btn {
-    width: 10px;
-    height: 10px;
-    border: 2px solid rgb(109, 63, 63);
+    all: unset;
+    color: aliceblue;
+
+    width: 15px;
+    height: 15px;
+    border-radius: 10px;
+    text-align: center;
 
 }
 
+.btn.close {
+    background-color: rgb(232, 45, 3);
+}
+
+.btn.maximize {
+    background-color: rgb(50, 212, 0);
+}
+
+.btn.minimize {
+    background-color: rgb(220, 220, 0);
+}
+
 .btn:hover {
-    border: 2px solid rgb(213, 21, 21);
+    border: 2px solid rgb(255, 79, 79);
     cursor: default;
 }
