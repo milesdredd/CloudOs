@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Bun
+bun.lockb
+
+# Logs
+*.log
+
+# Build outputs
+dist/
+build/
+
+# Environment variables
+.env
+.vscode/
