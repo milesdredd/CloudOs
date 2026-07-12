@@ -7,6 +7,7 @@ const Calculator = () => {
     const [exp, setExp] = useState("");
     const [ans, setAns] = useState("");
     const [wasm, setWasm] = useState("");
+    const ptr = (exp);
     function handleBtn(btn) {
         switch (btn) {
 
@@ -28,8 +29,15 @@ const Calculator = () => {
                 break;
             case "=": {
                 console.log(`calculate: ${exp}`)
-                if (wasm) setAns(wasm._answer());
 
+
+                const ans = wasm.ccall(
+                    "evaluate",
+                    "number",
+                    ["string"],
+                    [exp]
+                );
+                if (wasm) setAns(ans);
             };
                 break;
             default: setExp(exp + btn);
@@ -41,8 +49,12 @@ const Calculator = () => {
     }, [exp]);
     useEffect(() => {
         async function webAssembly() {
-            const wasm = await Module();
-            setWasm(wasm);
+            const mod = await Module();
+            console.log("ccall:", mod.ccall);
+            console.log("_evaluate:", mod._evaluate);
+
+            setWasm(mod);
+
         }
         webAssembly()
 
