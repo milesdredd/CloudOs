@@ -4399,7 +4399,6 @@ function checkIncomingModuleAPI() {
 }
 
 // Imports from the Wasm binary.
-var _answer = Module['_answer'] = makeInvalidEarlyAccess('_answer');
 var _evaluate = Module['_evaluate'] = makeInvalidEarlyAccess('_evaluate');
 var _fflush = makeInvalidEarlyAccess('_fflush');
 var _strerror = makeInvalidEarlyAccess('_strerror');
@@ -4415,7 +4414,6 @@ var __indirect_function_table = makeInvalidEarlyAccess('__indirect_function_tabl
 var wasmMemory = makeInvalidEarlyAccess('wasmMemory');
 
 function assignWasmExports(wasmExports) {
-  assert(typeof wasmExports['answer'] != 'undefined', 'missing Wasm export: answer');
   assert(typeof wasmExports['evaluate'] != 'undefined', 'missing Wasm export: evaluate');
   assert(typeof wasmExports['fflush'] != 'undefined', 'missing Wasm export: fflush');
   assert(typeof wasmExports['strerror'] != 'undefined', 'missing Wasm export: strerror');
@@ -4428,7 +4426,6 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['emscripten_stack_get_current'] != 'undefined', 'missing Wasm export: emscripten_stack_get_current');
   assert(typeof wasmExports['memory'] != 'undefined', 'missing Wasm export: memory');
   assert(typeof wasmExports['__indirect_function_table'] != 'undefined', 'missing Wasm export: __indirect_function_table');
-  _answer = Module['_answer'] = createExportWrapper('answer', wasmExports['answer'], 0);
   _evaluate = Module['_evaluate'] = createExportWrapper('evaluate', wasmExports['evaluate'], 1);
   _fflush = createExportWrapper('fflush', wasmExports['fflush'], 1);
   _strerror = createExportWrapper('strerror', wasmExports['strerror'], 1);

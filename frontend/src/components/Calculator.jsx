@@ -50,8 +50,6 @@ const Calculator = () => {
     useEffect(() => {
         async function webAssembly() {
             const mod = await Module();
-            console.log("ccall:", mod.ccall);
-            console.log("_evaluate:", mod._evaluate);
 
             setWasm(mod);
 

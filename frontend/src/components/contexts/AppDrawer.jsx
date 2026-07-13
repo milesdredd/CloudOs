@@ -7,7 +7,7 @@ export function WindowDxProvider({ children }) {
     const [AppRunData, setAppRunData] = useState({
         notes: false,
         browser: false,
-        calculator: true
+        calculator: false
     });
     return (
         <windowDx.Provider value={{ AppRunData, setAppRunData }}>

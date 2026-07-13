@@ -1,7 +1,9 @@
-import { useState, useEffect, Activity } from 'react'
+import { useState, useEffect, Activity, cache } from 'react'
 import './NoteApp.css'
 import AppTray from './AppTray.jsx';
 import App from '../App.jsx';
+
+
 const NoteApp = () => {
     async function fetchList() {
         const list = await fetch('')
@@ -18,26 +20,53 @@ const NoteApp = () => {
     const [update, setUpdate] = useState(0);
     useEffect(() => {
         const func = async () => {
-            console.log("fetching all notes for you ...");
-            const data = await fetch("http://localhost:4060/os/notes/", { credentials: "include" });
-            if (!data.ok) {
-                console.log("API failed");
-                return;
+            let cached = sessionStorage.getItem("notesCache");
+            if (cached) {
+                console.log("retrieved from cache");
+                const cache = JSON.parse(cached);
+                setList(cache.list);
             }
-            const notes = await data.json();
-            console.log(notes);
-            setList(notes);
+            else {
+                console.log("fetching all notes...");
+                const data = await fetch("http://localhost:4060/os/notes/", { credentials: "include" });
+                const notes = await data.json();
+                const cache = {
+                    list: notes,
+                    notes: {}
+                }
+
+                sessionStorage.setItem("notesCache", JSON.stringify(cache));
+                console.log("saving note list to cache");
+                setList(notes);
+            }
         }
         func();
 
     }, [update]);
     const contentData = async (id) => {
-        const cntnStream = await fetch(`http://localhost:4060/os/notes/${id}`, { credentials: "include" });
-        const cntnt = await cntnStream.json();
-        console.log(cntnt);
-        setContent(cntnt.contentData.content);
-        setCurrentNoteId(cntnt.contentData._id);
-        setCurrentNoteName(cntnt.contentData.title);
+        let cached = JSON.parse(sessionStorage.getItem("notesCache"));
+        if (!cached) {
+            cached = {
+                list: [],
+                notes: {}
+            };
+        }
+        if (cached?.notes[id]) {
+            console.log("retriving content frm cache");
+            setContent(cached.notes[id].content);
+            setCurrentNoteId(cached.notes[id]._id);
+            setCurrentNoteName(cached.notes[id].title);
+
+        } else {
+            console.log("fetching content")
+            const cntnStream = await fetch(`http://localhost:4060/os/notes/${id}`, { credentials: "include" });
+            const cntnt = await cntnStream.json();
+            cached.notes[id] = cntnt.contentData;
+            sessionStorage.setItem("notesCache", JSON.stringify(cached));
+            setContent(cntnt.contentData.content);
+            setCurrentNoteId(cntnt.contentData._id);
+            setCurrentNoteName(cntnt.contentData.title);
+        }
 
     }
     const saveNote = async (id) => {
@@ -58,6 +87,7 @@ const NoteApp = () => {
             if (data.success) {
                 console.log("saved ");
             }
+            sessionStorage.removeItem("notesCache");
         } catch (e) {
             console.log(e);
         }

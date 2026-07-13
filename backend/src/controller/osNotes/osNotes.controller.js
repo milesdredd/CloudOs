@@ -2,15 +2,17 @@
 import { Notesdb } from "../../model/osNotes.model.js";
 async function getNotesList(req, res) {
     try {
-        console.log("getting all users ...")
+
         const userId = req.user.userId;
-        const data = await Notesdb.find({ userId: userId });
+        console.log(`${userId} need note list, providing ..`)
+        const data = await Notesdb.find({ userId: userId }).select("title");
+
         // const allTitles =await data.json();
         return res
             .status(200)
             .json(data);
     } catch (e) {
-        return res.status(500).json({ error: "Failed to fetch notes" });
+        return res.status(500).json({ error: `Failed to fetch notes error : ${e}` });
     }
 
 

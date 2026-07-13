@@ -4,13 +4,6 @@
 using namespace std;
 
 
-extern "C"
-EMSCRIPTEN_KEEPALIVE
-int answer(){
-    return 42;
-}
-
-
 
 int depth(const char* exp){
     int depth = 0;
@@ -34,6 +27,16 @@ int depth(const char* exp){
     }
     return depth;
 }
+double readNumber(const char* exp, int* index) {
+    double num = 0;
+
+    while (exp[*index] >= '0' && exp[*index] <= '9') {
+        num = num * 10 + (exp[*index] - '0');
+        ++(*index);
+    }
+
+    return num;
+}
 double math(const char* exp,int* depth,int* index){
         double store = 0;
         int op;
@@ -41,16 +44,14 @@ double math(const char* exp,int* depth,int* index){
         while(exp[*index]!= '\0'){
 
             if ( exp[*index] >= '0' && exp[*index] <= '9'){
-                store = exp[*index]-'0';
-                ++(*index);
-
+                 store = readNumber(exp, index);
             }
             else{
                 op = (*index)++;
-                if(exp[op] == '+' && (*depth) == 1 ){  store += exp[(*index)++]-'0' ;}
-                if(exp[op] == '-' && (*depth) == 1 ){  store -= exp[(*index)++]-'0';}
-                if(exp[op] == 'x' && (*depth) == 2 ){  store *= exp[(*index)++]-'0';}
-                if(exp[op] == '/' && (*depth) == 2 ) { store /= exp[(*index)++]-'0';}
+                if(exp[op] == '+' && (*depth) == 1 ){  store += readNumber(exp, index) ;}
+                if(exp[op] == '-' && (*depth) == 1 ){  store -= readNumber(exp, index);}
+                if(exp[op] == 'x' && (*depth) == 2 ){  store *= readNumber(exp, index);}
+                if(exp[op] == '/' && (*depth) == 2 ) { store /= readNumber(exp, index);}
                 if ( op + 1 == (*index)){
                     if(exp[op] == '+'  ) {store += math(exp,depth,index);}
                     if(exp[op] == '-'  )  {store -= math(exp,depth,index);}

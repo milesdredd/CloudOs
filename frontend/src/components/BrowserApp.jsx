@@ -21,7 +21,6 @@ const BrowserApp = () => {
                     <div className="opts">
                         <button type="button" onClick={() => {
                             console.log("History tab  comming soon ... ")
-
                         }}>History</button>
 
                     </div>

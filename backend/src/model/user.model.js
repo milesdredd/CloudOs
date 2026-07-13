@@ -1,11 +1,13 @@
 import mongo from 'mongoose';
-
+import { customAlphabet } from "nanoid";
+const gen = customAlphabet("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 7)
 const userSchema = new mongo.Schema({
-    // username: {
-    //     type: String,
-    //     unique: true,
-    //     required: true
-    // },
+
+    userid: {
+        type: String,
+        unique: true,
+        default: () => gen()
+    },
     email: {
         type: String,
         unique: true,
