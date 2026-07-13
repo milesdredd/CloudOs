@@ -9,7 +9,8 @@ function handleTokenMiddleware(req, res, next) {
         if (!userToken) { return res.status(403).json({ success: false, reply: "no token found" }) }
 
         const tokenSign = jwt.verify(userToken, salt);
-
+        console.log("got a token");
+        console.log(`${tokenSign.email} want to login : middleware`);
         req.user = tokenSign;
         next();
 

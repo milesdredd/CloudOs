@@ -19,21 +19,28 @@ async function handleSignIn(req, res) {
 
     //verify >>
     const userExist = await userModel.findOne({ email });
+    console.log(userExist);
     //send profile themes here.
     if (!userExist) { return res.status(404).json({ success: false, reply: "user Not registers", tokenSent: null }) }
     // user exist : 
     if (password !== userExist.password) {
         return res.status(400).json({ success: false, reply: "wrong password", tokenSent: null });
     }
-    console.log("verifying ...")
+    console.log("verifying user ... +++")
     const token = await Token(userExist);
+    const userInfo = {
+        email: userExist.email,
+        profile: userExist.profile
+    }
     console.log(`token generated`)
-    res.cookie("token", token, {
-        httpOnly: true,
-        sameSite: "lax",
-        secure: false,
-        maxAge: 24 * 60 * 60 * 1000
-    }).json({ success: true, token: token });
+    res.cookie("token", token,
+        {
+            httpOnly: true,
+            sameSite: "lax",
+            secure: false,
+            maxAge: 24 * 60 * 60 * 1000
+        }
+    ).json({ success: true, token: token, Info: userInfo });
     console.log("token sent ! ")
 
 
@@ -68,8 +75,12 @@ async function handleSignUp(req, res) {
 
 }
 async function handleToken(req, res) {
-    res.status(201);
-
+    const userInfo = {
+        email: req.user.email,
+        profile: req.user.profile
+    }
+    res.status(201)
+        .json({ success: true, Info: userInfo });
 }
 export { handleSignUp, handleSignIn, handleToken };
 

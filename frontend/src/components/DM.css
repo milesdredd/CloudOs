@@ -1,0 +1,40 @@
+.frame {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    border: 2px solid rgb(0, 255, 0);
+    box-sizing: border-box;
+}
+
+.cover {
+    width: auto;
+    height: 70vh;
+    margin: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid green;
+    box-sizing: border-box;
+}
+
+.cover * {
+    border: 2px solid red;
+    max-width: 35vh;
+    min-width: 30vh;
+
+}
+
+.pfp {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 5px;
+}

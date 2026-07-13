@@ -3,7 +3,7 @@ import './NoteApp.css'
 import AppTray from './AppTray.jsx';
 import App from '../App.jsx';
 
-
+let once = 0;
 const NoteApp = () => {
     async function fetchList() {
         const list = await fetch('')
@@ -21,13 +21,13 @@ const NoteApp = () => {
     useEffect(() => {
         const func = async () => {
             let cached = sessionStorage.getItem("notesCache");
-            if (cached) {
+            if (cached && once > 0) {
                 console.log("retrieved from cache");
                 const cache = JSON.parse(cached);
                 setList(cache.list);
             }
             else {
-                console.log("fetching all notes...");
+                console.log("fetching notes ...");
                 const data = await fetch("http://localhost:4060/os/notes/", { credentials: "include" });
                 const notes = await data.json();
                 const cache = {
@@ -38,6 +38,7 @@ const NoteApp = () => {
                 sessionStorage.setItem("notesCache", JSON.stringify(cache));
                 console.log("saving note list to cache");
                 setList(notes);
+                once++;
             }
         }
         func();
