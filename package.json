@@ -1,0 +1,8 @@
+{
+  "name": "cloudos",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}
