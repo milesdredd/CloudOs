@@ -88,7 +88,9 @@ const NoteApp = () => {
             if (data.success) {
                 console.log("saved ");
             }
+
             sessionStorage.removeItem("notesCache");
+            setUpdate(prev => prev + 1);
         } catch (e) {
             console.log(e);
         }
@@ -111,6 +113,7 @@ const NoteApp = () => {
             const data = await saved.json();
             if (data.success) {
                 console.log(data.msg);
+                sessionStorage.removeItem("notesCache");
                 setUpdate(prev => prev + 1);
                 console.log("updating ui ... ")
             }
@@ -125,10 +128,12 @@ const NoteApp = () => {
                 method: "DELETE",
                 credentials: "include"
             });
+            sessionStorage.removeItem("notesCache");
             setUpdate(prev => prev + 1);
             setCurrentNoteName(null);
             setCurrentNoteId(null);
             setContent("content removed , choose one");
+
         }
         catch (e) {
             console.log(e);

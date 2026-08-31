@@ -15,6 +15,6 @@ const appSchema = new mongo.Schema(
         }
     }, { timestamps: true }
 )
+
 const appListDb = mongo.model("AppList", appSchema);
 export { appListDb };
-

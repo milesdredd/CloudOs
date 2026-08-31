@@ -61,7 +61,7 @@ const Calculator = () => {
 
 
     return (
-        <AppTray>
+        <AppTray layout={{ width: "30%", height: "70%" }}>
             <div className="mainframe">
 
                 <div className="screen">

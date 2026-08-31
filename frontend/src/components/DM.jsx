@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import './DM.css'
 const DM = () => {
     const [username, setUsr] = useState("miles");
@@ -6,27 +7,25 @@ const DM = () => {
     const [user, setUser] = useState("");
     const [loggedIn, setInfo] = useState(false);
     const [pfp, setPfp] = useState(null);
+    const navigate = useNavigate();
     useEffect(() => {
         console.log("running effect")
         const func = async () => {
             const res = await fetch("http://localhost:4060/auth/token", { credentials: "include" });
-
-
             const data = await res.json();
-
             if (!data.success) {
                 console.log("No valid token");
                 return;
             }
-
             if (data) {
                 localStorage.setItem("token", data.token);
-                console.log("looggin via token")
+                console.log("Using token to login");
                 setInfo(true);
                 setUser(data.Info.email);
+                //navigate("/home");
                 //  setPfp(data.Info.profile);
             } else {
-                console.log("N/A tooken")
+                console.log("N/A token");
             }
         }
         func();
@@ -58,6 +57,7 @@ const DM = () => {
                 setInfo(true);
                 setUser(data.Info.email);
                 // setPfp(data.Info.profile);
+                navigate("/home");
             } else {
                 console.log(`error occured: ${data.reply}`)
             }
@@ -71,10 +71,10 @@ const DM = () => {
                 <div className="pfp">pfp</div>
                 <div className="logins">
                     <span>username:</span>
-                    <input type="text" defaultValue={"miles"} onChange={(e) => { setUsr(e.target.value); console.log(username) }} />
+                    <input type="text" defaultValue={"miles"} onChange={(e) => { setUsr(e.target.value); }} />
                     <br />
                     <span>password:</span>
-                    <input type="text" defaultValue={"0000"} onChange={(e) => { setPass(e.target.value); console.log(pass) }} />
+                    <input type="text" defaultValue={"0000"} onChange={(e) => { setPass(e.target.value); }} />
                     <button onClick={handleLogin}>login</button>
                 </div>
 

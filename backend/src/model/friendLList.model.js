@@ -8,7 +8,6 @@ const friendSchema = new mongo.Schema({
     name: {
         type: String,
         require: true,
-
     }
 
 })
