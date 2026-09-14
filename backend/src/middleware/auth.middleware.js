@@ -15,11 +15,11 @@ function handleTokenMiddleware(req, res, next) {
         next();
 
     } catch (e) {
-        console.log("token error cannot approve access");
+        console.log("token expired or not available");
         return res.status(401).json({ success: false, msg: "token not verified to continue" })
     }
 
 
 }
-//if success : fals login again ! 
+//if success : fails login again ! 
 export { handleTokenMiddleware };

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker start mymongo >/dev/null 2>&1
+docker start pg >/dev/null 2>&1
 
 tmux new-session -d -s cloudos
 

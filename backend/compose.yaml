@@ -1,0 +1,16 @@
+services:
+  postgress:
+    image: postgres:18
+    container_name: pg
+    environment:
+      POSTGRES_USER: cloudos
+      POSTGRES_PASSWORD: milesraj
+      POSTGRES_DB: cloudDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgress_data:/var/lib/postgresql
+
+volumes:
+  postgress_data:
+  

@@ -1,13 +1,12 @@
 import { useState, useEffect, Activity, cache } from 'react'
 import './NoteApp.css'
 import AppTray from './AppTray.jsx';
-import App from '../App.jsx';
 
 let once = 0;
 const NoteApp = () => {
-    async function fetchList() {
-        const list = await fetch('')
-    }
+    // async function fetchList() {
+    //     const list = await fetch('')
+    // }
     const [noteList, setList] = useState([]);
     const [content, setContent] = useState("");
     const [CurrentNoteId, setCurrentNoteId] = useState(null);
@@ -27,8 +26,10 @@ const NoteApp = () => {
                 setList(cache.list);
             }
             else {
-                console.log("fetching notes ...");
+
+                console.log("fe:fetching notes list from backend")
                 const data = await fetch("http://localhost:4060/os/notes/", { credentials: "include" });
+                console.log(data);
                 const notes = await data.json();
                 const cache = {
                     list: notes,
@@ -52,21 +53,22 @@ const NoteApp = () => {
                 notes: {}
             };
         }
-        if (cached?.notes[id]) {
+        if (0 && cached?.notes[id]) {
             console.log("retriving content frm cache");
             setContent(cached.notes[id].content);
             setCurrentNoteId(cached.notes[id]._id);
             setCurrentNoteName(cached.notes[id].title);
 
         } else {
-            console.log("fetching content")
+            console.log("fetching content from server");
             const cntnStream = await fetch(`http://localhost:4060/os/notes/${id}`, { credentials: "include" });
             const cntnt = await cntnStream.json();
             cached.notes[id] = cntnt.contentData;
             sessionStorage.setItem("notesCache", JSON.stringify(cached));
-            setContent(cntnt.contentData.content);
-            setCurrentNoteId(cntnt.contentData._id);
-            setCurrentNoteName(cntnt.contentData.title);
+            console.log(cntnt.contentData);
+            setContent(cntnt.contentData[0].content);
+            setCurrentNoteId(cntnt.contentData[0].id);
+            setCurrentNoteName(cntnt.contentData[0].title);
         }
 
     }

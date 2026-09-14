@@ -1,12 +1,17 @@
+import pool from "../db/postgres.js";
 import { appListDb } from "../model/appList.model.js";
 async function handleAppList(req, res) {
     try {
 
         console.log("fetching available apps... ");
-        const apps = await appListDb.find();
+        const result = await pool.query(
+            `SELECT name from applists`
+        );
+        const app = result.rows;
+        console.log(app);
         // super roles can acess more apps ? 
 
-        res.status(200).send(apps);
+        res.status(200).send(app);
     }
     catch (e) {
         console.log({ msg: "error getting app  list " });
